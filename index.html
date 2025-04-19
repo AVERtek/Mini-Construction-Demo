@@ -242,6 +242,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <!--<img alt="Year of the Snake" src="images/YOTS 8c.jpg" class="center" style="width:auto;height:600px"> -->  
         
  </model-viewer>
+ <!-- Script to scale the usdz in AR on launch (246-256)-->
+ <script>
+  const modelViewer = document.getElementById('model-viewer');
+
+  modelViewer.addEventListener('ar-start', () => {
+    if (modelViewer.src.endsWith('.usdz')) {
+      // Override the 'auto' scale with your desired scaling factor for USDZ
+      modelViewer.setAttribute('ar-scale', '8 8 8'); // Example: Scale USDZ to 2.5 times
+    }
+    // No need to do anything for GLB, as 'ar-scale="auto"' will handle it.
+  });
+</script>
+ 
  </div>
  </div>
 <section class="attribution">
