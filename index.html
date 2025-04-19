@@ -222,7 +222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      <button slot="ar-button" style="z-index: 9; background-color: #017CB3; border-radius: 8px; border: 1 px solid white; position: absolute; top: 2px; right: 0; height: 40px; width: auto; ">
                    👆 <b style="color:#FFFFFF;"><strong>AUGMENTED REALITY!</strong></b></button> -->  
 
-   <model-viewer id="model-viewer" src="Models/const_30_123.glb?sound=Sound/Miniatures Demo 2.mp3" shadow-intensity="1" ar ar-modes="scene-viewer webxr quick-look" ar-scale="auto" ar-preferred ar-placement="floor" camera-controls autoplay 
+   <model-viewer id="model-viewer" src="Models/const_30_123.glb?sound=Sound/Miniatures Demo 2.mp3" shadow-intensity="1" ar ar-modes="scene-viewer webxr quick-look" ar-preferred ar-placement="floor" camera-controls autoplay 
     camera-orbit="0deg 75deg 75%" id="reveal" loading="eager" alt="Construction Demo" style="width: 100%; height: 600px; autoplay exposure="1" ios-src="Models/NewCONST_30_123.usdz" interaction-prompt="none">
                     
      <button slot="ar-button" style="z-index: 9; background-color: #017CB3; border-radius: 8px; border: 1 px solid white; position: absolute; top: 2px; right: 0; height: 40px; width: auto; ">
@@ -244,15 +244,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  </model-viewer>
  <!-- Script to scale the usdz in AR on launch (246-256)-->
  <script>
-  const modelViewer = document.getElementById('model-viewer');
+    const modelViewer = document.getElementById('model-viewer');
 
-  modelViewer.addEventListener('ar-start', () => {
-    if (modelViewer.src.endsWith('.usdz')) {
-      // Override the 'auto' scale with your desired scaling factor for USDZ
-      modelViewer.setAttribute('ar-scale', '8 8 8'); // Example: Scale USDZ to 2.5 times
-    }
-    // No need to do anything for GLB, as 'ar-scale="auto"' will handle it.
-  });
+    modelViewer.addEventListener('ar-start', () => {
+        if (modelViewer.src.endsWith('.usdz') || modelViewer.iosSrc.endsWith('.usdz')) {
+            modelViewer.setAttribute('ar-scale', '8 8 8');
+        } else if (modelViewer.src.endsWith('.glb')) {
+            modelViewer.setAttribute('ar-scale', 'auto');
+        }
+    });
 </script>
  
  </div>
